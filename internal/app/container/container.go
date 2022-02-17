@@ -1,8 +1,8 @@
 package container
 
 import (
-	"go-helpers/cache"
 	"sync"
+	"url-shortener/go-helpers/cache"
 	"url-shortener/internal/app/controller"
 	"url-shortener/internal/app/factories"
 	"url-shortener/internal/app/utility"
@@ -22,13 +22,12 @@ type dependencyInjector struct{}
 func (c *dependencyInjector) InjectDependencies() *controller.UrlController {
 	redisKeyGen := utility.NewRedisKeyGenerator()
 	redisClient := cache.GetRedisClientImp()
-	urlShortenerFactory := factories.NewUrlShortenerFactory(redisKeyGen, redisClient)
+	urlShortenerFactory := factories.NewUrlShortenerFactory(redisClient, redisKeyGen)
 
 	urlController := controller.NewUrlController(urlShortenerFactory)
 	return urlController
 }
 
-// ServiceContainer : ServiceContainer
 func ServiceContainer() IServiceContainer {
 	if dependencyInjectorInstance == nil {
 		containerOnce.Do(func() {

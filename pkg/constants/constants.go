@@ -3,7 +3,7 @@ package constants
 const (
 	// Service Name
 	ServiceName = "url-shortener"
-	InHouse     = "inhouse"
+	Inhouse     = "inhouse"
 
 	//Viper Keys
 	AllowedOrigins = "AllowedOrigins"
@@ -18,4 +18,13 @@ const (
 
 	//Config File Path
 	ConfigFilePath = "./pkg"
+
+	//Param Key
+	UrlShortenerNameParamKey = "url-shortener-name"
+
+	//Error Message
+	InvalidUrlShortenerNameError = "Invalid UrlShortener name provided"
+
+	// Environment
+	DevEnvironment = "dev"
 )

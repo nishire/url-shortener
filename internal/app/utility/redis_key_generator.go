@@ -22,6 +22,6 @@ func NewRedisKeyGenerator() *RedisKeyGenerator {
 func (u RedisKeyGenerator) GenerateRedisKeyForUrl(ctx context.Context) string {
 	log.Println("Creating redis key for url")
 	env := viper.GetString(constants.Environment)
-	var key = env + app_constants.UNDERSCORE_SEPARATOR + app_constants.SERVICE_NAME_KEY + app_constants.COLON_SEPERATOR + constants.InHouse + app_constants.UNDERSCORE_SEPARATOR // need to add unique id in the end
+	var key = env + app_constants.UNDERSCORE_SEPARATOR + app_constants.SERVICE_NAME_KEY + app_constants.COLON_SEPERATOR + constants.Inhouse + app_constants.UNDERSCORE_SEPARATOR // need to add unique id in the end
 	return key
 }

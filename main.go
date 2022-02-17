@@ -6,10 +6,7 @@ import (
 	"os"
 	"url-shortener/internal/app/server"
 
-	"url-shortener/go-helpers/logger"
-
-	"url-shortener/go-helpers/config"
-	"url-shortener/go-helpers/constants"
+	"url-shortener/pkg/constants"
 
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
@@ -29,7 +26,7 @@ func main() {
 	}
 	flag.Parse()
 
-	config.Init(service, environment, constants.ConfigFilePath)
+	// config.Init(service, environment, constants.ConfigFilePath)
 	// logger.InitLogger()
 
 	tracer.Start(tracer.WithEnv(environment),
@@ -43,5 +40,5 @@ func main() {
 
 	// Blocking until the shutdown to complete then inform the main goroutine.
 	<-exitChannel
-	logger.SugarLogger.Info("main goroutine shutdown completed gracefully.")
+	fmt.Println("main goroutine shutdown completed gracefully.")
 }
