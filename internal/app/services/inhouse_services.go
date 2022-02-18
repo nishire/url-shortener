@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"net/url"
 	"strings"
-	"url-shortener/go-helpers/cache"
 	"url-shortener/internal/app/interfaces"
 	"url-shortener/internal/app/utility"
+	"url-shortener/internal/app/utility/cache"
 	"url-shortener/pkg/constants"
 
 	"github.com/golang/glog"

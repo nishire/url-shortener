@@ -1,10 +1,10 @@
 package factories
 
 import (
-	"url-shortener/go-helpers/cache"
 	"url-shortener/internal/app/interfaces"
 	"url-shortener/internal/app/services"
 	"url-shortener/internal/app/utility"
+	"url-shortener/internal/app/utility/cache"
 	"url-shortener/pkg/constants"
 )
 

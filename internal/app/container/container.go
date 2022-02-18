@@ -2,10 +2,10 @@ package container
 
 import (
 	"sync"
-	"url-shortener/go-helpers/cache"
 	"url-shortener/internal/app/controller"
 	"url-shortener/internal/app/factories"
 	"url-shortener/internal/app/utility"
+	"url-shortener/internal/app/utility/cache"
 )
 
 var (
