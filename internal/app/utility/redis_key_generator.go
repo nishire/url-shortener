@@ -1,7 +1,6 @@
 package utility
 
 import (
-	"context"
 	"log"
 	"url-shortener/internal/app/app_constants"
 	"url-shortener/pkg/constants"
@@ -10,7 +9,7 @@ import (
 )
 
 type IRedisKeyGenerator interface {
-	GenerateRedisKeyForUrl(ctx context.Context) string
+	GenerateRedisKeyForUrl(string) string
 }
 
 type RedisKeyGenerator struct{}
@@ -19,9 +18,9 @@ func NewRedisKeyGenerator() *RedisKeyGenerator {
 	return &RedisKeyGenerator{}
 }
 
-func (u RedisKeyGenerator) GenerateRedisKeyForUrl(ctx context.Context) string {
+func (u RedisKeyGenerator) GenerateRedisKeyForUrl(url string) string {
 	log.Println("Creating redis key for url")
 	env := viper.GetString(constants.Environment)
-	var key = env + app_constants.UNDERSCORE_SEPARATOR + app_constants.SERVICE_NAME_KEY + app_constants.COLON_SEPERATOR + constants.Inhouse + app_constants.UNDERSCORE_SEPARATOR // need to add unique id in the end
+	var key = env + app_constants.UNDERSCORE_SEPARATOR + app_constants.SERVICE_NAME_KEY + app_constants.COLON_SEPERATOR + constants.Inhouse + app_constants.UNDERSCORE_SEPARATOR + url
 	return key
 }

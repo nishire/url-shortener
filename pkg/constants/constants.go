@@ -11,10 +11,11 @@ const (
 	Environment    = "Environment"
 
 	// URL contexts
-	Url_Shortener = "/url-shortener"
-	API           = "api"
-	Version_V1    = "v1"
-	FetchShortUrl = "fetchShortUrl"
+	Url_Shortener              = "/url-shortener"
+	API                        = "/api"
+	Version_V1                 = "/v1"
+	FetchShortUrl              = "/fetchShortUrl"
+	Url_shortener_Name_Context = ":url-shortener-name"
 
 	//Config File Path
 	ConfigFilePath = "./pkg"
@@ -27,4 +28,9 @@ const (
 
 	// Environment
 	DevEnvironment = "dev"
+
+	UrlShortenerBaseUrl = "UrlShortenerBaseUrl"
+
+	// Redis
+	RedisTimeoutDuration = "RedisTimeout"
 )

@@ -1,3 +1,10 @@
 {
-    "redis.url": "localhost:6379"
+    "name": "url-shortener",
+    "property":         {   
+        "UrlShortenerBaseUrl": "http://localhost:8080",
+        "RedisUrl": "localhost:6379",
+        "RedisTimeout": 30,
+        "ServerPort": ":8080",
+        "Environment": "dev"
+    }
 }

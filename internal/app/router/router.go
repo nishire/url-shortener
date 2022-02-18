@@ -5,11 +5,10 @@ import (
 	"url-shortener/internal/app/container"
 	"url-shortener/pkg/constants"
 
-	"github.com/gin-gonic/gin"
+	cors "github.com/rs/cors/wrapper/gin"
 	"github.com/spf13/viper"
 
-	cors "github.com/rs/cors/wrapper/gin"
-	gintrace "gopkg.in/DataDog/dd-trace-go.v1/contrib/gin-gonic/gin"
+	"github.com/gin-gonic/gin"
 )
 
 //NewRouter :
@@ -32,8 +31,6 @@ func NewRouter() *gin.Engine {
 	})
 
 	router.Use(corsHandler)
-
-	router.Use(gintrace.Middleware(constants.ServiceName))
 
 	urlController := container.ServiceContainer().InjectDependencies()
 

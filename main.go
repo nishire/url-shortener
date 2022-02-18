@@ -1,14 +1,11 @@
 package main
 
 import (
-	"flag"
-	"fmt"
 	"os"
 	"url-shortener/internal/app/server"
 
+	"url-shortener/pkg/config"
 	"url-shortener/pkg/constants"
-
-	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 func main() {
@@ -18,27 +15,9 @@ func main() {
 		environment = constants.DevEnvironment
 	}
 
-	exitChannel := make(chan struct{})
+	// initialize config
+	config.Init(service, environment, constants.ConfigFilePath)
 
-	flag.Usage = func() {
-		fmt.Println("Usage: server -s {service_name} -e {environment}")
-		os.Exit(1)
-	}
-	flag.Parse()
-
-	// config.Init(service, environment, constants.ConfigFilePath)
-	// logger.InitLogger()
-
-	tracer.Start(tracer.WithEnv(environment),
-		tracer.WithService(service),
-		tracer.WithDebugMode(true))
-	go server.Init()
-	defer tracer.Stop()
-
-	// Init Shutdown Signals & Actions
-	// gracefulshutdown.Shutdown()
-
-	// Blocking until the shutdown to complete then inform the main goroutine.
-	<-exitChannel
-	fmt.Println("main goroutine shutdown completed gracefully.")
+	// initialize server
+	server.Init()
 }

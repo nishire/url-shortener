@@ -17,6 +17,7 @@ var redisClient *RedisClientImp
 type IRedisClient interface {
 	Get(key string) (string, error)
 	Set(key string, value interface{}, ttl time.Duration) (string, error)
+	Exists(key string) bool
 }
 
 type RedisClientImp struct {
@@ -49,6 +50,12 @@ func (u RedisClientImp) Get(key string) (string, error) {
 
 func (u RedisClientImp) Set(key string, value interface{}, ttl time.Duration) (string, error) {
 	return u.RedisClient.Set(context.Background(), key, value, ttl).Result()
+}
+
+func (u RedisClientImp) Exists(key string) bool {
+	result := u.RedisClient.Exists(context.Background(), key)
+	var isAlreadyUsed bool = int(result.Val()) != 0
+	return isAlreadyUsed
 }
 
 func (u RedisClientImp) GetRedisClient() *RedisClientImp {
