@@ -22,7 +22,9 @@ type dependencyInjector struct{}
 func (c *dependencyInjector) InjectDependencies() *controller.UrlController {
 	redisKeyGen := utility.NewRedisKeyGenerator()
 	redisClient := cache.GetRedisClientImp()
-	urlShortenerFactory := factories.NewUrlShortenerFactory(redisClient, redisKeyGen)
+	base62Encoder := utility.NewBase62Encoder()
+
+	urlShortenerFactory := factories.NewUrlShortenerFactory(redisClient, redisKeyGen, base62Encoder)
 
 	urlController := controller.NewUrlController(urlShortenerFactory)
 	return urlController
