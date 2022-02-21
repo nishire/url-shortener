@@ -15,3 +15,6 @@ Architecture :
    a. Fetch provider name i.e shortenerName (here we have "inhouse")
    b. Fetch interface with all method signatures for that particular provider.
    c. Use these methods further as required in the controller.
+
+Test Cases :
+To run test cases please go inside directory /internal/app/services and run command `go test` since we have our unit test files here.
